@@ -7,7 +7,12 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..101);
 
+    const ANSWER_COUNT_MAX: u32 = 5;
+    let mut answer_count: u32 = 0;
+
     loop {
+        println!("Number of answer limits: {}", ANSWER_COUNT_MAX);
+        println!("Number of answers: {}", answer_count + 1);
         println!("Please input your guess."); // ほら、予想を入力してね
 
         let mut guess = String::new();
@@ -31,5 +36,7 @@ fn main() {
                 break;
             }
         }
+
+        answer_count += 1;
     }
 }
