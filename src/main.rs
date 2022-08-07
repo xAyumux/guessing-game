@@ -12,7 +12,8 @@ fn main() {
 
     loop {
         println!("Number of answer limits: {}", ANSWER_COUNT_MAX);
-        println!("Number of answers: {}", answer_count + 1);
+        answer_count += 1;
+        println!("Number of answers: {}", answer_count);
         println!("Please input your guess."); // ほら、予想を入力してね
 
         let mut guess = String::new();
@@ -29,14 +30,17 @@ fn main() {
         println!("You guessed: {}", guess); // 次のように予想しました: {}
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),  // 小さすぎ！
-            Ordering::Greater => println!("Too big!"), // 大きすぎ！
+            Ordering::Less => println!("Too small!\n"),  // 小さすぎ！
+            Ordering::Greater => println!("Too big!\n"), // 大きすぎ！
             Ordering::Equal => {
                 println!("You win!"); // やったね！
                 break;
             }
         }
 
-        answer_count += 1;
+        if ANSWER_COUNT_MAX <= answer_count {
+            println!("Game Over!"); // ゲーム終了です！
+            break;
+        }
     }
 }
